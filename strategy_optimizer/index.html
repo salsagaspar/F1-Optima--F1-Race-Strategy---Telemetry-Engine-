@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Race Strategy Optimizer & Pit Stop Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Apache ECharts V5 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="logo-container">
+                <span class="f1-red-dot"></span>
+                <h1>F1 STRATEGY <span class="accent-text">OPTIMIZER</span></h1>
+            </div>
+            <div class="status-badge">LIVE SIMULATOR ACTIVE</div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- SIDEBAR CONTROLS -->
+            <aside class="sidebar-panel">
+                <h2>RACE CONFIGURATION</h2>
+                <hr class="neon-line">
+                
+                <div class="control-group">
+                    <label for="circuit-select">Select Circuit</label>
+                    <select id="circuit-select"></select>
+                </div>
+
+                <div class="control-group">
+                    <label for="driver-select">Select Driver</label>
+                    <select id="driver-select"></select>
+                </div>
+
+                <div class="control-group">
+                    <label for="weather-select">Weather Condition</label>
+                    <select id="weather-select">
+                        <option value="Dry">Dry Track</option>
+                        <option value="Cloudy">Cloudy</option>
+                        <option value="Mixed">Mixed / Damp</option>
+                        <option value="Wet">Wet Track</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <div class="slider-header">
+                        <label for="laps-input">Race Distance (Laps)</label>
+                        <span id="laps-value" class="value-display">55</span>
+                    </div>
+                    <input type="range" id="laps-input" min="10" max="75" value="55" step="1">
+                </div>
+                
+                <div class="sidebar-footer">
+                    <p>Designed using F1 Historical datasets (2018-2023)</p>
+                </div>
+            </aside>
+
+            <!-- MAIN WORKSPACE -->
+            <main class="main-content">
+                <!-- KPI SUMMARY CARDS -->
+                <section class="kpi-row">
+                    <div class="kpi-card">
+                        <div class="kpi-label">OPTIMAL STRATEGY</div>
+                        <div class="kpi-value accent-text" id="sequence-card">-</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">TOTAL RACE TIME</div>
+                        <div class="kpi-value" id="total-time-card">-</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">STOPS</div>
+                        <div class="kpi-value" id="stops-card">-</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">AVG LAP TIME</div>
+                        <div class="kpi-value" id="avg-lap-card">-</div>
+                    </div>
+                </section>
+
+                <!-- VISUAL TIMELINE -->
+                <section class="panel timeline-panel">
+                    <h2>STINT TIMELINE VISUALIZER</h2>
+                    <div class="timeline-container">
+                        <div class="lap-markers">
+                            <span>Start</span>
+                            <span>Mid-Race</span>
+                            <span>Finish</span>
+                        </div>
+                        <div id="stint-timeline" class="stint-timeline-bar"></div>
+                    </div>
+                </section>
+
+                <!-- CHARTS ROW -->
+                <section class="charts-row">
+                    <div class="panel chart-container-panel">
+                        <div id="telemetry-chart" class="chart-box"></div>
+                    </div>
+                    <div class="panel chart-container-panel">
+                        <div id="comparison-chart" class="chart-box"></div>
+                    </div>
+                </section>
+
+                <!-- TELEMETRY TABLE -->
+                <section class="panel table-panel">
+                    <h2>LAP-BY-LAP TELEMETRY DATA</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Lap</th>
+                                    <th>Lap Time</th>
+                                    <th>Tyre</th>
+                                    <th>Tyre Wear</th>
+                                    <th>Fuel Weight</th>
+                                    <th>Event</th>
+                                </tr>
+                            </thead>
+                            <tbody id="telemetry-tbody">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Load data first, then logic -->
+    <script src="f1_data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
