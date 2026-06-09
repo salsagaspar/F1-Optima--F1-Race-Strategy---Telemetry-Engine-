@@ -78,3 +78,9 @@ The optimizer uses **Dynamic Programming / Grid Search** to evaluate every valid
 * **Frontend**: HTML5, Vanilla CSS3 (Custom scrollbars, blur filter glassmorphism, responsive grid), Vanilla JavaScript (ES6+).
 * **Charts**: Apache ECharts (v5.4.3 CDN).
 * **Data & Machine Learning**: Python 3, Pandas, NumPy, Matplotlib, Seaborn, Scikit-Learn, Joblib, Jupyter Notebook.
+
+## Dashboard Top
+![alt text](<Visual Dashboards Show/dashboard_top_final_1780965323029.png>)
+
+## Dashboard Bottom
+![alt text](<Visual Dashboards Show/dashboard_bottom_final_1780965317970.png>)
